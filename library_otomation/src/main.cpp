@@ -18,11 +18,11 @@ int main(){
     // Build Menus
 
     // Book Menu
-    Menu bookMainMenu = Menu(context);
+    Menu bookMainMenu = Menu(context,"Book Menu");
     bookMainMenu.addOption("List Books", [&](){
         cout << "\n--List Books\n";
         context.dataManagerBooks.show(); });
-    bookMainMenu.addOption("Add Books", [&](){
+    bookMainMenu.addOption("Add Book", [&](){
         cout << "\n--Add Book\n";
         Book bk = context.dataManagerBooks.buildBook();
         context.dataManagerBooks.addItem(bk);});
@@ -32,7 +32,7 @@ int main(){
         context.dataManagerBooks.show(); });
 
     // User Menu
-    Menu userMainMenu = Menu(context);
+    Menu userMainMenu = Menu(context,"User Menu");
     userMainMenu.addOption("Admin Register", [&](){ 
         cout << "\n--Admin Register\n";
         User usr = context.dataManagerUsers.buildUser(1);
@@ -55,7 +55,7 @@ int main(){
         ; });
 
     // Main Menu
-    Menu mainMenu = Menu(context);
+    Menu mainMenu = Menu(context,"Main Menu");
     mainMenu.addOption("Login", [&](){ 
         userMainMenu.run();
         ; });

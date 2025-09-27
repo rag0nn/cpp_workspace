@@ -4,6 +4,36 @@
 #include <typeinfo>
 #include <functional>
 #include <limits>
+#include <chrono>
+#include <ctime>
+
+string get_date_string() {
+    // Şimdiki zamanı al
+    auto now = std::chrono::system_clock::now();
+
+    // time_t tipine çevir
+    std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+    // Yerel zamana çevir
+    std::tm *local_time = std::localtime(&now_time);
+
+    string text  = to_string(1900 + local_time->tm_year) + "," + to_string(local_time->tm_mon) + "," + to_string(local_time->tm_mday);
+    return text;
+}
+
+string get_time_string() {
+    // Şimdiki zamanı al
+    auto now = std::chrono::system_clock::now();
+
+    // time_t tipine çevir
+    std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+    // Yerel zamana çevir
+    std::tm *local_time = std::localtime(&now_time);
+
+    string text  = to_string(local_time->tm_hour) + "," + to_string(local_time->tm_min) + "," + to_string(local_time->tm_sec);
+    return text;
+}
 
 vector<string> split(string text,char sign){
     vector<string> parts;
@@ -29,7 +59,9 @@ void Menu::run() {
         if (context.dataManagerUsers.isLogin) {
             std::cout << "\n--- " << title 
                     << " --- Logged: " << context.dataManagerUsers.loggedUser.get_name()
-                    << ((context.dataManagerUsers.loggedUser.get_flag() == 0) ? " as User" : " as Admin");
+                    << ((context.dataManagerUsers.loggedUser.get_flag() == 0) ? " as User" : " as Admin")
+                    << " | [" + get_date_string() + "]"
+                    << "[" + get_time_string() + "]";
         } else {
             std::cout << "\n--- " << title << " --- Not logged in";
         }
@@ -64,4 +96,5 @@ void Menu::run() {
         callbacks[choice]();
     }
 }
+
 

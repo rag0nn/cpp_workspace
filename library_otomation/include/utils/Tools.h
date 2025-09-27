@@ -8,8 +8,6 @@ using namespace std;
 
 vector<string> split(string text,char sign);
 
-
-
 class Context{
     public:
         DataManagerBook& dataManagerBooks;
@@ -27,5 +25,8 @@ class Menu{
 
         void addOption(const string& label, function<void()> cb);
         void run();
-        Menu(Context &cntxt): context(cntxt){};
+        Menu(Context &cntxt,string title): context(cntxt), title(title){};
 };
+
+string get_date_string();
+string get_time_string();

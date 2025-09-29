@@ -96,7 +96,7 @@ void DataManagerBook::changeDepositable(){
     save_data();
 }
 
-Book DataManagerBook::selectBook(){
+Book& DataManagerBook::selectBook(){
     int idx = 0;
     for (Book bk: data){
         cout << "[" +std::to_string(idx) + "]" + bk.info() + "\n";
@@ -111,8 +111,6 @@ Book DataManagerBook::selectBook(){
             continue;;
         }
         else {
-            data[idx].is_depositable = !data[idx].is_depositable;
-            save_data();            
             return data[idx];
         }
     }

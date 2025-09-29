@@ -46,12 +46,8 @@ void DataManagerTransaction::addItem(Transaction trs){
     save_data();
 }
 
-Transaction DataManagerTransaction::buildTransaction(DataManagerBook& dmb, DataManagerUser& dmu){
-    Book selectedBook = dmb.selectBook();
-    User selectedUser = dmu.loggedUser;
-    DateTime datetime = DateTime::now();
-    Transaction trs = Transaction(selectedUser, selectedBook, datetime);
-    return trs; 
+Transaction DataManagerTransaction::buildTransaction(Book book, User user, DateTime datetime){
+    return Transaction(user,  book, datetime);
 }
 
 

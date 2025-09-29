@@ -25,7 +25,7 @@ vector<string> DataManager::load_data(){
             data.push_back(row);
         }
         file.close();
-        cout << "Data Loaded" << endl;
+        // cout << "Data Loaded" << endl;
 
     }
     catch(string err){
@@ -37,7 +37,7 @@ vector<string> DataManager::load_data(){
         // cout << data[0];
         // if (data.size() > 1) cout << " " << data[1];
     }else{
-        cout << "data null "<< endl;
+        // cout << "data null "<< endl;
     }
     return data;
 };

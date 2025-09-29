@@ -9,7 +9,6 @@
 using namespace std;
 
 
-
 int main(){
     
     // BuildContext
@@ -73,9 +72,57 @@ int main(){
     // Transaction Menu
     Menu depositMenu = Menu(context, "Transaction Menu");
     depositMenu.addOption("Deposite Book", [&](){
-        Transaction trs = dmt.buildTransaction(dmb,dmu);
-        dmt.addItem(trs);
-    });    
+        while (true){
+            Book& selectedBook = dmb.selectBook();
+            User selectedUser = dmu.loggedUser;
+            DateTime datetime = DateTime::now();
+
+            if(selectedBook.is_depositable){
+                selectedBook.is_depositable = false;
+                Transaction trs = Transaction(selectedUser, selectedBook, datetime);
+                dmt.addItem(trs);
+                cout << "Book deposited" << endl;
+                break;
+            }
+            else {
+                cout << "This book not depositable! Try Again?" <<endl;
+                bool con = false;
+                cout << "Input 1/0: "; cin >>con;
+                if (con){
+                    continue;
+                }
+                else {break;}
+            }
+        }
+
+    });   
+    depositMenu.addOption("Give Back Book", [&](){
+
+        while (true){
+            Book& selectedBook = dmb.selectBook();
+            User selectedUser = dmu.loggedUser;
+            DateTime datetime = DateTime::now();
+
+            if(!selectedBook.is_depositable){
+                selectedBook.is_depositable = true;
+                Transaction trs = Transaction(selectedUser, selectedBook, datetime);
+                dmt.addItem(trs);
+                cout << "Book gaven back" << endl;
+                break;
+            }
+            else {
+            cout << "This book already in storage!" <<endl;
+            bool con = false;
+            cout << "Input 1/0: "; cin >>con;
+            if (con){
+                continue;
+            }
+            else {break;}
+            }
+        }
+
+
+    });     
 
     // Main Menu
     Menu mainMenu = Menu(context,"Main Menu");
@@ -100,7 +147,10 @@ int main(){
     // Run Process
     mainMenu.run();
     
-    cout << "end";
+    dmt.save_data();
+    dmu.save_data();
+    dmb.save_data();
+    cout << "Program ended\n";
 
     return 0;
 }

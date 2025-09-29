@@ -11,27 +11,19 @@ using namespace std;
 
 
 DataManagerUser::DataManagerUser(){
-    cout << "\nz000";
-
     load_data();
-    cout << "\nz001";
-
 }
 void DataManagerUser::load_data(){
-    cout << "\nz1";
     DataManager dataManager =  DataManager(path);
         vector<string> stringData =  dataManager.load_data();
-        cout << "\nz2";
 
         for (string item : stringData) {
             vector<string> parts = split(item,',');
             User book = User(parts.at(2),parts.at(3),parts.at(1),parts.at(4),stoi(parts.at(0)),stoi(parts.at(5)));
             data.push_back(book);
-            cout << "\nz3";
 
         };
 
-    cout << "\nz4";
     
 }
 void DataManagerUser::save_data(){

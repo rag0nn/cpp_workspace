@@ -20,6 +20,6 @@ class Book {
                 writer(writer),
                 isbn(isbn), 
                 is_depositable(is_depositable) {
-                    std::cout << "Book initialized.\n";
+                    // std::cout << "Book initialized.\n";
                 }
 };

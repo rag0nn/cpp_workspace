@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Book {
@@ -18,5 +19,7 @@ class Book {
                 name(name),
                 writer(writer),
                 isbn(isbn), 
-                is_depositable(is_depositable) {}
+                is_depositable(is_depositable) {
+                    std::cout << "Book initialized.\n";
+                }
 };

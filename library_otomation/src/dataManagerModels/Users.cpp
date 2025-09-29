@@ -11,17 +11,28 @@ using namespace std;
 
 
 DataManagerUser::DataManagerUser(){
+    cout << "\nz000";
+
     load_data();
+    cout << "\nz001";
+
 }
 void DataManagerUser::load_data(){
+    cout << "\nz1";
     DataManager dataManager =  DataManager(path);
         vector<string> stringData =  dataManager.load_data();
+        cout << "\nz2";
+
         for (string item : stringData) {
             vector<string> parts = split(item,',');
-            User book = User(parts.at(2),parts.at(3),parts.at(1),stoi(parts.at(4)),stoi(parts.at(0)),stoi(parts.at(5)));
+            User book = User(parts.at(2),parts.at(3),parts.at(1),parts.at(4),stoi(parts.at(0)),stoi(parts.at(5)));
             data.push_back(book);
+            cout << "\nz3";
+
         };
 
+    cout << "\nz4";
+    
 }
 void DataManagerUser::save_data(){
     DataManager dataManager =  DataManager(path);
@@ -43,11 +54,9 @@ User DataManagerUser::buildUser(int flag){
     cout << "\n Surname: "; getline(cin, surname);
     cout << "\n Username: ";getline(cin, username);
     cout << "\n Password: "; getline(cin, pswString);
-    password = stoi(pswString);
-
     id = 1;
     _flag = flag;
-    User newUser = User(name,surname,username,password,id,_flag);
+    User newUser = User(name,surname,username,pswString,id,_flag);
     return newUser;
 }
 bool DataManagerUser::login(User usr){

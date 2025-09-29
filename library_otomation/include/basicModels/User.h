@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <utils/Encryption.h>
 using namespace std;
 
 class User{
     private:
-        int password;
+        string psw;
         int id;
         int flag;
         string name;
@@ -21,7 +22,7 @@ class User{
         string get_username();
         string get_name();
         string get_surname();
-        int get_password();
+        string get_password();
         int get_id();
         int get_flag();
 
@@ -29,17 +30,20 @@ class User{
         string name,
         string surname,
         string username,
-        int password,
+        string password,
         int id,
         int flag
 
     ) : name(name),
      surname(surname),
      username(username),
-     password(password),
      id(id),
      flag(flag)
-     {}
+     {
+        EncryptionHelper eh = EncryptionHelper();
+        psw = eh.sha256(password);
+
+     }
 
 
 };

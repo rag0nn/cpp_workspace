@@ -14,6 +14,7 @@ vector<string> DataManager::load_data(){
     vector<string> data;
 
     try{
+        
         if (!file.is_open()) {
             string cerr = "Error: Cannot open file: [" + path + "] \n";
             throw cerr;
@@ -25,13 +26,19 @@ vector<string> DataManager::load_data(){
         }
         file.close();
         cout << "Data Loaded" << endl;
+
     }
     catch(string err){
         cout << err;
     }
 
 
-
+    if (!data.empty()) {
+        // cout << data[0];
+        // if (data.size() > 1) cout << " " << data[1];
+    }else{
+        cout << "data null "<< endl;
+    }
     return data;
 };
 

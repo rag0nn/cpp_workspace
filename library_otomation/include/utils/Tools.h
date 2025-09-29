@@ -4,6 +4,12 @@
 #include <functional>
 #include <dataManagerModels/Books.h>
 #include <dataManagerModels/Users.h>
+#include <dataManagerModels/Transactions.h>
+#include <iostream>
+#include <chrono>
+#include <ctime>
+#include <sstream>
+
 using namespace std;
 
 vector<string> split(string text,char sign);
@@ -12,8 +18,13 @@ class Context{
     public:
         DataManagerBook& dataManagerBooks;
         DataManagerUser& dataManagerUsers;
+        DataManagerTransaction& dataManagerTransaction;
     
-    Context(DataManagerBook& dataManagerBook, DataManagerUser& dataManagerUser): dataManagerBooks(dataManagerBook), dataManagerUsers(dataManagerUser) {}
+    Context(DataManagerBook& dataManagerBook, 
+        DataManagerUser& dataManagerUser, 
+        DataManagerTransaction& dataManagerTransaction): 
+        dataManagerBooks(dataManagerBook), dataManagerUsers(dataManagerUser), dataManagerTransaction(dataManagerTransaction)
+        {}
 };
 
 class Menu{
@@ -28,5 +39,5 @@ class Menu{
         Menu(Context &cntxt,string title): context(cntxt), title(title){};
 };
 
-string get_date_string();
-string get_time_string();
+
+

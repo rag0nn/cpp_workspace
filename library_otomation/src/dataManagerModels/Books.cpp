@@ -14,12 +14,18 @@ DataManagerBook::DataManagerBook(){
 void DataManagerBook::load_data(){
     DataManager dataManager =  DataManager(path);
     vector<string> stringData =  dataManager.load_data();
+    // cout << "size: "<<stringData.size() <<endl;
     for (string item : stringData) {
+
+        // cout << "\nit: " << item;
         vector<string> parts = split(item,',');
-        int tmp;
-        bool _is_depositable = (tmp != 0);
-        Book book = Book(parts.at(0),parts.at(1),std::stoi(parts.at(2)),_is_depositable);
+        // cout << "\nlen: " << parts.size();
+        // cout << "\nparts: " << parts.at(0)<< " " << parts.at(1)<< " " << std::stoi(parts.at(2))<< " " << (stoi(parts.at(3)) == 1) <<endl;
+        
+        Book book = Book(parts.at(0),parts.at(1),stod(parts.at(2)),stoi(parts.at(3)) == 1);
+        // cout << "t1\n";
         data.push_back(book);
+        // cout << "t2\n";
     };
 };
 
@@ -88,5 +94,28 @@ void DataManagerBook::changeDepositable(){
     data[idx].is_depositable = !data[idx].is_depositable;
     cout << "\n Book Deposit Changed Successfully!";
     save_data();
+}
+
+Book DataManagerBook::selectBook(){
+    int idx = 0;
+    for (Book bk: data){
+        cout << "[" +std::to_string(idx) + "]" + bk.info() + "\n";
+        idx+=1;
+    };
+
+    while (true){
+        cout << "Input: "; cin >> idx;
+
+        if(idx < 0 || idx > data.size()-1){
+            cout << "\n Wrong Index Input!"<<endl;
+            continue;;
+        }
+        else {
+            data[idx].is_depositable = !data[idx].is_depositable;
+            save_data();            
+            return data[idx];
+        }
+    }
+
 }
 

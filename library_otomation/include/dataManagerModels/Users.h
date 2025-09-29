@@ -9,7 +9,7 @@ using namespace std;
 
 class DataManagerUser {
     public:
-        User loggedUser = User("","","",0,0,0);   
+        User loggedUser = User("","","","",0,0);   
         bool isLogin = false;
         const string path = "data/user.txt";
         vector<User> data;

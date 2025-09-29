@@ -18,6 +18,7 @@ class DataManagerBook {
         void changeDepositable();
         Book buildBook();
         DataManagerBook();
+        Book selectBook();
 };
 
 

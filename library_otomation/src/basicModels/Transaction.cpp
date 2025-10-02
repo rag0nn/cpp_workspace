@@ -40,6 +40,8 @@ Transaction Transaction::fromString(const string& text) {
     return Transaction(_user, _book, _dtm);
 }
 
-void Transaction::show(){
-    cout << usr.info() << " " << bk.info() << " " << datetime.to_string() << endl;
+string Transaction::show(){
+    string _text = usr.info() +" " + bk.info() + " " +datetime.to_string();
+    cout << _text << endl;
+    return _text;
 }

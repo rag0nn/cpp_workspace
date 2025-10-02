@@ -17,7 +17,7 @@ class Transaction{
         User usr;
         DateTime datetime;
         string to_string();
-        void show();
+        string show();
         Transaction(User user,Book book,  DateTime datetime): bk(book), usr(user), datetime(datetime){}
         static Transaction fromString(const string& text); 
 

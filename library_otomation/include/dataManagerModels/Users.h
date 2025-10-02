@@ -18,6 +18,6 @@ class DataManagerUser {
         void show();
         void addItem(User item);
         User buildUser(int flag = 0);
-        bool login(User usr);
+        bool login(User usr,bool alreadyLoginCheck = true);
         DataManagerUser();
 };

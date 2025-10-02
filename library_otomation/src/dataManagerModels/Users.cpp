@@ -51,7 +51,7 @@ User DataManagerUser::buildUser(int flag){
     User newUser = User(name,surname,username,pswString,id,_flag);
     return newUser;
 }
-bool DataManagerUser::login(User usr){
+bool DataManagerUser::login(User usr,bool alreadyLoginCheck){
     auto _login = [&]() {
         for (User i: data){
             if (i.get_username() == usr.get_username() && i. get_password() == usr.get_password() && i.get_flag() == usr.get_flag()){
@@ -73,13 +73,19 @@ bool DataManagerUser::login(User usr){
     }
     else {
         bool dec;
-        cout << "One user account as active, do you want to exit? /1 or 0: "; cin >> dec;
-        if(dec){
+        if(alreadyLoginCheck){
+            cout << "One user account as active, do you want to exit? /1 or 0: "; cin >> dec;
+            if(dec){
+                bool success = _login();
+                return success;
+            }
+            else{
+                return false;
+            }
+        }else{
             bool success = _login();
             return success;
         }
-        else{
-            return false;
-        }
+
     }   
 }

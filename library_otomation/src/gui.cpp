@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
     // Section 2 fonksiyonları - önceden tanımlı
     std::vector<std::vector<std::function<void()>>> subFuncs = {
         {
-            [&](){ 
+            [&](){ // Register Admin
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Name"));
                 inputEdits[1]->setPlaceholderText(QString::fromStdString("Surname"));
                 inputEdits[2]->setPlaceholderText(QString::fromStdString("Username"));
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
                     edt->setText(QString::fromStdString(""));};
                 
             },
-            [&](){ 
+            [&](){ // Login Admin
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Name"));
                 inputEdits[1]->setPlaceholderText(QString::fromStdString("Surname"));
                 inputEdits[2]->setPlaceholderText(QString::fromStdString("Username"));
@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
                 for (auto edt : inputEdits){
                     edt->setText(QString::fromStdString(""));};
             },
-            [&](){
+            [&](){ // Register User
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Name"));
                 inputEdits[1]->setPlaceholderText(QString::fromStdString("Surname"));
                 inputEdits[2]->setPlaceholderText(QString::fromStdString("Username"));
@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
                     edt->setText(QString::fromStdString(""));};
                 
             },
-            [&](){ 
+            [&](){ // Login User
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Name"));
                 inputEdits[1]->setPlaceholderText(QString::fromStdString("Surname"));
                 inputEdits[2]->setPlaceholderText(QString::fromStdString("Username"));
@@ -205,14 +205,22 @@ int main(int argc, char *argv[]) {
             }
         },
         {
-            [&](){ 
+            [&](){ // List book
+                if(context.dataManagerUsers.loggedUser.get_flag() != 1){
+                    outputLine->setText(QString::fromStdString("Must be login as Admin"));
+                    return;
+                }
                 string _text = "";
                 for (auto item : context.dataManagerBooks.data){
                     _text += item.info() + "\n";
                 }
                 outputLine->setText(QString::fromStdString(_text));
              },
-            [&](){ 
+            [&](){ // Add book
+                if(context.dataManagerUsers.loggedUser.get_flag() != 1){
+                    outputLine->setText(QString::fromStdString("Must be login as Admin"));
+                    return;
+                }
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Name"));
                 inputEdits[1]->setPlaceholderText(QString::fromStdString("Author"));
                 inputEdits[2]->setPlaceholderText(QString::fromStdString("Isbn"));
@@ -227,12 +235,11 @@ int main(int argc, char *argv[]) {
                 int _isbn;
                 try{
                     _isbn = stoi(inputEdits[2]->text().toStdString());
-                    throw "ISBN must be numeric";
-
-                }catch(string err){
-                    outputLine->setText(QString::fromStdString(err));
+                }catch(const std::invalid_argument& e){
+                    outputLine->setText(QString::fromStdString("ISBN must be numeric"));
                     return;
                 };
+
 
                 Book bk = Book(
                     inputEdits[0]->text().toStdString(),
@@ -247,31 +254,42 @@ int main(int argc, char *argv[]) {
                 for (auto edt : inputEdits){
                     edt->setText(QString::fromStdString(""));};
             },
-            [&](){ 
+            [&](){ // Change Deposit
 
+                if(context.dataManagerUsers.loggedUser.get_flag() != 1){
+                    outputLine->setText(QString::fromStdString("Must be login as Admin"));
+                    return;
+                }
                 inputEdits[0]->setPlaceholderText(QString::fromStdString("Index"));
                 
                 int _iidx = 0;
+                string _text = "";
                 // List
                 for (Book bk: context.dataManagerBooks.data){
-                    cout << "[" +std::to_string(_iidx) + "]" + bk.info() + "\n";
+                    _text += "[" +std::to_string(_iidx) + "]" + bk.info() + "\n";
                     _iidx += 1;
                 };
+                outputLine->setText(QString::fromStdString(_text)); 
 
                 // Checks
                 if (inputEdits[0]->text().isEmpty() 
                 ){
-                    outputLine->setText("You must fill the 1"); 
+                    outputLine->setText(QString::fromStdString(_text + "You must fill the 1") ); 
                     return;
                 }
 
                 // Choose Index
                 int idx;
                 try {
-                    int idx = stoi(inputEdits[0]->text().toStdString());
-                    throw("Index must be integer");
-                }catch(string err){
-                    outputLine->setText(QString::fromStdString(err)); 
+                    idx = stoi(inputEdits[0]->text().toStdString());
+                }
+                catch (const std::invalid_argument& e) {
+                    outputLine->setText("Index must be an integer");
+                    return;
+                }
+                catch (const std::out_of_range& e) {
+                    outputLine->setText("Index out of range (too large number)");
+                    return;
                 }
 
                 if(idx < 0 || idx > context.dataManagerBooks.data.size()-1){
@@ -289,21 +307,139 @@ int main(int argc, char *argv[]) {
                     edt->setText(QString::fromStdString(""));};
 
             },
-            [&](){
+            [&](){ // List Transaction
+                if(context.dataManagerUsers.loggedUser.get_flag() != 1){
+                    outputLine->setText(QString::fromStdString("Must be login as Admin"));
+                    return;
+                }
                 int _iidx = 0;
                 // List
+                string _text = "";
                 for (Transaction trs : context.dataManagerTransaction.data){
-                    cout << "[" +std::to_string(_iidx) + "]" + trs.show() + "\n";
+                    
+                    _text += "[" +std::to_string(_iidx) + "]" + trs.show() + "\n";
                     _iidx += 1;
                 };
+                cout << _text;
+                outputLine->setText(QString::fromStdString(_text)); 
+                
                 // remove inputs
                 for (auto edt : inputEdits){
                     edt->setText(QString::fromStdString(""));}; 
              }
         },
         {
-            [outputLine](){ outputLine->setText("Alt 3-1 tıklandı"); },
-            [outputLine](){ outputLine->setText("Alt 3-2 tıklandı"); }
+            [&](){ // Deposit Book
+
+                inputEdits[0]->setPlaceholderText(QString::fromStdString("Index"));
+                
+                int _iidx = 0;
+                string _text = "";
+                // List
+                for (Book bk: context.dataManagerBooks.data){
+                    _text += "[" +std::to_string(_iidx) + "]" + bk.info() + "\n";
+                    cout << _text;
+                    _iidx += 1;
+                };
+                outputLine->setText(QString::fromStdString(_text));
+                // Checks
+                if (inputEdits[0]->text().isEmpty() 
+                ){
+                    outputLine->setText(QString::fromStdString(_text + "\nYou must fill the 1")); 
+                    return;
+                }
+
+                // Choose Index
+                int idx;
+                try {
+                    idx = stoi(inputEdits[0]->text().toStdString());
+                }
+                catch (const std::invalid_argument& e) {
+                    outputLine->setText("Index must be an integer");
+                    return;
+                }
+                catch (const std::out_of_range& e) {
+                    outputLine->setText("Index out of range (too large number)");
+                    return;
+                }
+
+                if(idx < 0 || idx > context.dataManagerBooks.data.size()-1){
+                    outputLine->setText(QString::fromStdString("Index must be in interval")); 
+                    return;
+                }
+                else if (!context.dataManagerBooks.data[idx].is_depositable){
+                    outputLine->setText(QString::fromStdString("This book is not depositable")); 
+                    return;
+                }
+                Book& selectedBook = context.dataManagerBooks.data[idx];
+                User selectedUser = dmu.loggedUser;
+                DateTime datetime = DateTime::now();
+
+                selectedBook.is_depositable = false;
+                Transaction trs = Transaction(selectedUser, selectedBook, datetime);
+                context.dataManagerTransaction.addItem(trs);
+                outputLine->setText(QString::fromStdString("Book deposited successfully: " + selectedBook.info()));           
+            
+                // remove inputs
+                for (auto edt : inputEdits){
+                    edt->setText(QString::fromStdString(""));};
+            },
+            [&](){  // Give back book
+
+                inputEdits[0]->setPlaceholderText(QString::fromStdString("Index"));
+                
+                int _iidx = 0;
+                string _text = "";
+                // List
+                for (Book bk: context.dataManagerBooks.data){
+                    _text += "[" +std::to_string(_iidx) + "]" + bk.info() + "\n";
+                    _iidx += 1;
+                };
+                cout << _text;
+
+                outputLine->setText(QString::fromStdString(_text));
+                // Checks
+                if (inputEdits[0]->text().isEmpty() 
+                ){
+                    outputLine->setText(QString::fromStdString(_text + "\nYou must fill the 1")); 
+                    return;
+                }
+
+                // Choose Index
+                int idx;
+                try {
+                    idx = stoi(inputEdits[0]->text().toStdString());
+                }
+                catch (const std::invalid_argument& e) {
+                    outputLine->setText("Index must be an integer");
+                    return;
+                }
+                catch (const std::out_of_range& e) {
+                    outputLine->setText("Index out of range (too large number)");
+                    return;
+                }
+
+                if(idx < 0 || idx > context.dataManagerBooks.data.size()-1){
+                    outputLine->setText(QString::fromStdString("Index must be in interval")); 
+                    return;
+                }
+                else if (context.dataManagerBooks.data[idx].is_depositable){
+                    outputLine->setText(QString::fromStdString("This book is depositable can not givable back.")); 
+                    return;
+                }
+                Book& selectedBook = context.dataManagerBooks.data[idx];
+                User selectedUser = dmu.loggedUser;
+                DateTime datetime = DateTime::now();
+
+                selectedBook.is_depositable = true;
+                Transaction trs = Transaction(selectedUser, selectedBook, datetime);
+                context.dataManagerTransaction.addItem(trs);
+                outputLine->setText(QString::fromStdString("Book gave back successfully: " + selectedBook.info()));           
+
+                // remove inputs
+                for (auto edt : inputEdits){
+                    edt->setText(QString::fromStdString(""));};
+            }
         }
     };
 

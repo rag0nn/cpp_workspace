@@ -1,3 +1,99 @@
 sefiller,victor hugo,12412412,0
 insanın anlam arayışı,viktor frankl,12214124,1
 iyi aile yoktur,nihan kaya,124124128,0
+suç ve ceza,fyodor dostoyevski,13498124,1
+kürk mantolu madonna,sabahattin ali,98312452,0
+savaş ve barış,lev tolstoy,12877451,1
+çalıkuşu,reşat nuri güntekin,18451245,0
+denemeler,montaigne,92734124,1
+fareler ve insanlar,john steinbeck,76123984,0
+dönüşüm,franz kafka,61237845,1
+bülbülü öldürmek,harper lee,82374912,0
+yüzüklerin efendisi,j.r.r. tolkien,71289453,1
+uçurtma avcısı,khaled hosseini,67893421,0
+otostopçunun galaksi rehberi,douglas adams,45128763,1
+madame bovary,gustave flaubert,32789451,0
+beyaz diş,jack london,98765431,1
+palto,franz kafka,58921347,0
+don kişot,miguel de cervantes,11223344,1
+çöküş,stefan zweig,44332211,0
+budala,fyodor dostoyevski,99887766,1
+yeraltından notlar,fyodor dostoyevski,44556677,0
+martin eden,jack london,77889911,1
+içimizdeki şeytan,sabahattin ali,66778899,0
+vanya dayı,anton çehov,11224455,1
+ecinniler,fyodor dostoyevski,22334455,0
+germinal,emile zola,33445566,1
+şato,franz kafka,44556688,0
+kumarbaz,fyodor dostoyevski,55667799,1
+karamazov kardeşler,fyodor dostoyevski,66778811,0
+çanlar kimin için çalıyor,ernest hemingway,77889922,1
+yaşlı adam ve deniz,ernest hemingway,88990011,0
+çavdar tarlasında çocuklar,j.d. salinger,99001122,1
+çocukluğun soğuk geceleri,tezer özlü,11112233,0
+hayvan çiftliği,george orwell,22223344,1
+1984,george orwell,33334455,0
+sefaletin sonu,thomas piketty,44445566,1
+küçük prens,antoine de saint-exupéry,55556677,0
+hamlet,william shakespeare,66667788,1
+othello,william shakespeare,77778899,0
+macbeth,william shakespeare,88889900,1
+romeo ve juliet,william shakespeare,99990011,0
+bir kadının portresi,henry james,11113344,1
+gazap üzümleri,john steinbeck,22224455,0
+incir kuşları,çetin altan,33335566,1
+ay ışığında çalışma,stefan zweig,44446677,0
+merhamet,stefan zweig,55557788,1
+satranç,stefan zweig,66668899,0
+meçhul bir kadının mektubu,stefan zweig,77779900,1
+bir adamın düşüşü,albert camus,88880011,0
+yabancı,albert camus,99991122,1
+veba,albert camus,11114455,0
+sisifos söyleni,albert camus,22225566,1
+mutlu ölüm,albert camus,33336677,0
+dava,franz kafka,44447788,1
+milena’ya mektuplar,franz kafka,55558899,0
+şato,franz kafka,66669900,1
+adalet,platon,77770011,0
+devlet,platon,88881122,1
+şölen,platon,99992233,0
+apologia,platon,11115566,1
+felsefenin tesellisi,boethius,22226677,0
+ahlakın soykütüğü,nietzsche,33337788,1
+böyle buyurdu zerdüşt,nietzsche,44448899,0
+iyi ve kötü ötesinde,nietzsche,55559900,1
+tanrı öldü mü?,nietzsche,66660011,0
+ecce homo,nietzsche,77771122,1
+trajedinin doğuşu,nietzsche,88882233,0
+insanca pek insanca,nietzsche,99993344,1
+körlük,jose saramago,11116677,0
+tüfek mikroplar ve çelik,jared diamond,22227788,1
+medeniyetler çatışması,samuel huntington,33338899,0
+demokrasi nedir?,norberto bobbio,44449900,1
+akıl çağı,thomas paine,55550011,0
+komünist manifesto,karl marx,66661122,1
+kapital,karl marx,77772233,0
+ütopya,thomas more,88883344,1
+leviat,thomas hobbes,99994455,0
+toplum sözleşmesi,jean-jacques rousseau,11117788,1
+emile,jean-jacques rousseau,22228899,0
+sosyal sözleşme,jean-jacques rousseau,33339900,1
+cesur yeni dünya,aldous huxley,44440011,0
+ada,aldous huxley,55551122,1
+zaman makinesi,h.g. wells,66662233,0
+görünmez adam,h.g. wells,77773344,1
+dünyalar savaşı,h.g. wells,88884455,0
+insanlığın yıldızının parladığı an,stefan zweig,99995566,1
+istanbul,orhan pamuk,11118899,0
+kar,orhan pamuk,22229900,1
+masumiyet müzesi,orhan pamuk,33330011,0
+benim adım kırmızı,orhan pamuk,44441122,1
+sessiz ev,orhan pamuk,55552233,0
+cennetin doğusu,john steinbeck,66663344,1
+bitmeyen kavga,john steinbeck,77774455,0
+bir gün,mehmet erte,88885566,1
+aşk ve gurur,jane austen,99996677,0
+ikna,jane austen,11119900,1
+mansfield park,jane austen,22221011,0
+emma,jane austen,33332122,1
+gurur ve önyargı,jane austen,44443233,0

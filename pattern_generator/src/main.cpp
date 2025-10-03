@@ -16,7 +16,7 @@ int main(){
         std::cout << "\n y: " << y;
 
         cv::Mat img(height, width, CV_8UC3, cv::Scalar(255, 255, 255)); 
-        cv::Scalar color(255,0,120);
+        cv::Scalar color(255,0,255);
         cv::Mat res = CyclicalPattern::disciplined(img,3,5,y,2,color);
 
         cv::imshow("Window", img);
